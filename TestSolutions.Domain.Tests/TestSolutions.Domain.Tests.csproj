@@ -45,9 +45,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomerTests.cs" />
+    <Compile Include="OrderDetailsTest.cs" />
     <Compile Include="OrderTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="FinanceTests.cs" />
+    <Compile Include="ShippersTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

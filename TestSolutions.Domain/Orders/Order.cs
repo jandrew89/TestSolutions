@@ -1,22 +1,18 @@
-﻿using TestSolutions.Domain.Customers;
+﻿using System;
+using TestSolutions.Domain.Customers;
+using TestSolutions.Domain.Shippers;
 
 namespace TestSolutions.Domain.Orders
 {
     public class Order
     {
+        public Customer Customer { get; set; }
+        public Shipper Shipper { get; set; }
 
         public int OrderId { get; set; }
+        public decimal Total { get; set; }
+        public string Comments { get; set; }
+        public DateTime CreationDateTime { get; set; }
 
-        public Customer Customer { get; set; }
-
-
-        //public int OrderId
-        //{
-        //    get { return _orderId; } 
-        //    private set
-        //    {
-        //        _orderId = value;
-        //    }
-        //}
     }
 }
