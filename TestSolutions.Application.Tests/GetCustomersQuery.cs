@@ -1,5 +1,4 @@
-﻿using AutoMoq;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -7,9 +6,13 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestSolutions.Application.Customers;
+using TestSolutions.Application.Customers.Commands.CreateCustomer;
+using TestSolutions.Application.Customers.Commands.Factory;
 using TestSolutions.Application.Customers.Queries.Abstractions;
 using TestSolutions.Application.Customers.Queries.Implementations;
 using TestSolutions.Application.Interfaces;
+using TestSolutions.Common;
 using TestSolutions.Domain.Customers;
 
 namespace TestSolutions.Application.Tests
@@ -17,10 +20,8 @@ namespace TestSolutions.Application.Tests
     [TestFixture]
     public class GetCustomersQueryTests
     {
-        private GetCustomersQuery _query;
         private Customer _customer;
-        private AutoMoqer _moq;
-
+        private List<Customer> _customers { get; set; }
         private const int CustomerId = 1;
         private const string CompanyName = "TestCompanyName";
         private const string ContactName = "TestContactName";
@@ -29,31 +30,34 @@ namespace TestSolutions.Application.Tests
         [SetUp]
         public void SetUp()
         {
-            _moq = new AutoMoqer();
+            _customers = new List<Customer>();
             _customer = new Customer()
             {
                 CustomerId = CustomerId,
                 CompanyName = CompanyName,
                 ContactName = ContactName
             };
-           
-            _moq.GetMock<IDatabaseService>()
-                .Setup(p => p.Customers)
-                .Returns(_moq.GetMock<IDbSet<Customer>>().Object);
 
 
-            _query = _moq.Create<GetCustomersQuery>();
+            
         }
 
         [Test]
         public void Test_Execute_Should_Return_List_Of_Customers()
         {
-            var customerResults = _query.GetCustomersList();
-            var cust = customerResults.Single();
+            //ARRANGE
+            IDbSet<Customer> mockData = _customers.GetQueryableMockDbSet();
+            var mockDatabase = new Mock<IDatabaseService>();
+            mockDatabase.Setup(c => c.Customers).Returns(mockData);
+            var mockFactory = new Mock<ICustomerFactory>();
+            mockFactory.Setup(c => c.Create(It.IsAny<CustomerModel>()));
 
-            Assert.That(cust.CustomerId, Is.EqualTo(CustomerId));
-            Assert.That(cust.CompanyName, Is.EqualTo(CompanyName));
-            Assert.That(cust.ContactName, Is.EqualTo(ContactName));
+            var customerCommand = new CreateCustomerCommand(mockDatabase.Object, mockFactory.Object);
+
+            //ACT
+            customerCommand.CreateCustomer(new CustomerModel());
+            //ASSERT
+            mockFactory.VerifyAll();
         }
     }
 }

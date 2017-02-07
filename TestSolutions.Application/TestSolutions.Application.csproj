@@ -49,6 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Customers\Commands\CreateCustomer\CreateCustomerCommand.cs" />
+    <Compile Include="Customers\Commands\CreateCustomer\ICreateCustomerCommand.cs" />
+    <Compile Include="Customers\Commands\Factory\CustomerFactory.cs" />
+    <Compile Include="Customers\Commands\Factory\ICustomerFactory.cs" />
     <Compile Include="Customers\CustomerModel.cs" />
     <Compile Include="Customers\Queries\Abstractions\IGetCustomersQuery.cs" />
     <Compile Include="Customers\Queries\Implementations\GetCustomersQuery.cs" />
@@ -56,7 +60,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Customers\Commands\" />
     <Folder Include="OrderDetails\" />
     <Folder Include="Orders\" />
     <Folder Include="Shippers\" />
