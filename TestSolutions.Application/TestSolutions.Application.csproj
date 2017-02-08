@@ -58,11 +58,14 @@
     <Compile Include="Customers\Queries\Implementations\GetCustomersQuery.cs" />
     <Compile Include="Interfaces\IDatabaseService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shippers\Queries\GetShipper\GetShipper.cs" />
+    <Compile Include="Shippers\Queries\GetShipper\IGetShipper.cs" />
+    <Compile Include="Shippers\ShipperModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="OrderDetails\" />
     <Folder Include="Orders\" />
-    <Folder Include="Shippers\" />
+    <Folder Include="Shippers\Commands\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
