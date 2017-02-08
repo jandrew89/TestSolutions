@@ -17,9 +17,9 @@
 
 namespace TestSolutions.Service.DependencyResolution {
     using Application.Customers.Commands.CreateCustomer;
-    using Application.Customers.Queries.Abstractions;
     using Application.Customers.Queries.Implementations;
     using Application.Interfaces;
+    using Application.Shippers.Queries.GetShipper;
     using Repository.EF;
     using StructureMap.Configuration.DSL;
     using StructureMap.Graph;
@@ -33,6 +33,8 @@ namespace TestSolutions.Service.DependencyResolution {
                     scan.TheCallingAssembly();
 
                     scan.AssemblyContainingType<GetCustomersQuery>();
+                    scan.AssemblyContainingType<GetShipper>();
+                    scan.AssemblyContainingType<CreateCustomerCommand>();
                     scan.WithDefaultConventions();
                     
                 });
