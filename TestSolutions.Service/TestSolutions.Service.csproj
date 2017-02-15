@@ -165,7 +165,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Order\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TestSolutions.Application\TestSolutions.Application.csproj">
       <Project>{0d0f8c62-ab35-4775-8edc-d174fc56f484}</Project>

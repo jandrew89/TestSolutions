@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using TestSolutions.Domain.Customers;
+using TestSolutions.Domain.Orders;
 using TestSolutions.Domain.Shippers;
 
 namespace TestSolutions.Repository.EF
@@ -17,6 +18,8 @@ namespace TestSolutions.Repository.EF
             CreateCustomer(context);
 
             CreateShipper(context);
+
+            CreateSales(context);
         }
 
         private void CreateCustomer(TestSolutionsService context)
@@ -32,6 +35,23 @@ namespace TestSolutions.Repository.EF
             context.Shippers.Add(new Shipper() { CompanyName = "DHL", ContactName = "Ricardo A. Bartra" });
             context.Shippers.Add(new Shipper() { CompanyName = "FedEx", ContactName = "Rob Carter" });
             context.Shippers.Add(new Shipper() { CompanyName = "UPS", ContactName = "Juan R. Perez" });
+        }
+
+        private void CreateSales(TestSolutionsService context)
+        {
+            var shippers = context.Shippers.ToList();
+
+            var customers = context.Customers.ToList();
+
+            context.Orders.Add(new Order()
+            {
+                Comments = "TestComments",
+                CreationDateTime = DateTime.Now.Date.AddDays(2),
+                Customer = customers[0],
+                Shipper = shippers[0],
+                Total = 1
+            });
+          
         }
     }
 }
