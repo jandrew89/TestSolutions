@@ -1,4 +1,6 @@
-﻿using TestSolutions.Domain.Common;
+﻿using System.Collections.Generic;
+using TestSolutions.Domain.Common;
+using TestSolutions.Domain.Orders;
 
 namespace TestSolutions.Domain.Shippers
 {
@@ -7,5 +9,8 @@ namespace TestSolutions.Domain.Shippers
         public int ShipperId { get; set; }
         public string CompanyName { get; set; }
         public string ContactName { get; set; }
+
+        public virtual ICollection<Order> Orders { get; set; }
+
     }
 }
