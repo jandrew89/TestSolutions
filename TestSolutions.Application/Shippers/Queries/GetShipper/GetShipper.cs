@@ -18,6 +18,7 @@ namespace TestSolutions.Application.Shippers.Queries.GetShipper
 
         public List<ShipperModel> GetShipperList()
         {
+
             var shippers = _context.Shippers.Select(s => new ShipperModel
             {
                 CompanyName = s.CompanyName,
