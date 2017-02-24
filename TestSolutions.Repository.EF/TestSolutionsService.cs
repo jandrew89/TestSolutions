@@ -9,6 +9,7 @@ using TestSolutions.Domain.OrderDetails;
 using TestSolutions.Domain.Orders;
 using TestSolutions.Domain.Shippers;
 using TestSolutions.Repository.EF.Customers;
+using TestSolutions.Repository.EF.OrderDetails;
 using TestSolutions.Repository.EF.Orders;
 using TestSolutions.Repository.EF.Shippers;
 
@@ -37,6 +38,7 @@ namespace TestSolutions.Repository.EF
             modelBuilder.Configurations.Add(new CustomerConfiguration());
             modelBuilder.Configurations.Add(new ShipperConfiguration());
             modelBuilder.Configurations.Add(new OrderConfiguration());
+            modelBuilder.Configurations.Add(new OrderDetailsConfiguration());
         }
     }
 }

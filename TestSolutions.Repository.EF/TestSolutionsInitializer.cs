@@ -56,7 +56,8 @@ namespace TestSolutions.Repository.EF
                 Shipper = shippers[0],
                 Total = 1
             });
-          
+            context.SaveChanges();
+
         }
 
         private void CreateOrderDetails(TestSolutionsService context)
@@ -71,6 +72,8 @@ namespace TestSolutions.Repository.EF
                 Total = 120.00m,
                 UnitPrice = 12 
             });
+            context.SaveChanges();
+
         }
 
     }
