@@ -10,6 +10,8 @@ namespace TestSolutions.Domain.Orders
 {
     public class Order : IEntity
     {
+
+
         public Customer Customer { get; set; }
         public Shipper Shipper { get; set; }
 
@@ -17,6 +19,6 @@ namespace TestSolutions.Domain.Orders
         public decimal Total { get; set; }
         public string Comments { get; set; }
         public DateTime CreationDateTime { get; set; }
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        //public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }
