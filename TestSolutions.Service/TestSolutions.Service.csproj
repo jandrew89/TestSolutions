@@ -153,6 +153,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Orders\OrdersController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shippers\ShippersController.cs" />
   </ItemGroup>
@@ -165,9 +166,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Order\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\TestSolutions.Application\TestSolutions.Application.csproj">
       <Project>{0d0f8c62-ab35-4775-8edc-d174fc56f484}</Project>

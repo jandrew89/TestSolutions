@@ -19,7 +19,9 @@ namespace TestSolutions.Service.DependencyResolution {
     using Application.Customers.Commands.CreateCustomer;
     using Application.Customers.Queries.Implementations;
     using Application.Interfaces;
+    using Application.Orders.Commands.CreateOrder;
     using Application.Shippers.Queries.GetShipper;
+    using Common.Dates;
     using Repository.EF;
     using StructureMap.Configuration.DSL;
     using StructureMap.Graph;
@@ -35,6 +37,8 @@ namespace TestSolutions.Service.DependencyResolution {
                     scan.AssemblyContainingType<GetCustomersQuery>();
                     scan.AssemblyContainingType<GetShipper>();
                     scan.AssemblyContainingType<CreateCustomerCommand>();
+                    scan.AssemblyContainingType<CreateOrderCommand>();
+                    scan.AssemblyContainingType<DateService>();
                     scan.WithDefaultConventions();
                     
                 });
