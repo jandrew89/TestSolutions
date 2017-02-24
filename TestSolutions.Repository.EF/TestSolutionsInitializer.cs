@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using TestSolutions.Domain.Customers;
+using TestSolutions.Domain.OrderDetails;
 using TestSolutions.Domain.Orders;
 using TestSolutions.Domain.Shippers;
 
@@ -20,8 +21,11 @@ namespace TestSolutions.Repository.EF
             CreateShipper(context);
 
             CreateSales(context);
+
+            CreateOrderDetails(context);
         }
 
+        
         private void CreateCustomer(TestSolutionsService context)
         {
             context.Customers.Add(new Customer() { ContactName = "Colleen Dunn", CompanyName = "Best Buy" });
@@ -35,6 +39,7 @@ namespace TestSolutions.Repository.EF
             context.Shippers.Add(new Shipper() { CompanyName = "DHL", ContactName = "Ricardo A. Bartra" });
             context.Shippers.Add(new Shipper() { CompanyName = "FedEx", ContactName = "Rob Carter" });
             context.Shippers.Add(new Shipper() { CompanyName = "UPS", ContactName = "Juan R. Perez" });
+            context.SaveChanges();
         }
 
         private void CreateSales(TestSolutionsService context)
@@ -53,5 +58,20 @@ namespace TestSolutions.Repository.EF
             });
           
         }
+
+        private void CreateOrderDetails(TestSolutionsService context)
+        {
+            var orders = context.Orders.ToList();
+
+            context.OrderDetails.Add(new OrderDetail()
+            {
+                Order = orders[0],
+                ProductName = "TestProductName",
+                Quantity = 1000,
+                Total = 120.00m,
+                UnitPrice = 12 
+            });
+        }
+
     }
 }

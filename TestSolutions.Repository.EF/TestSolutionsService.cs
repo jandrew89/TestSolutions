@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using TestSolutions.Application.Interfaces;
 using TestSolutions.Domain.Customers;
+using TestSolutions.Domain.OrderDetails;
 using TestSolutions.Domain.Orders;
 using TestSolutions.Domain.Shippers;
 using TestSolutions.Repository.EF.Customers;
@@ -18,6 +19,7 @@ namespace TestSolutions.Repository.EF
         public IDbSet<Customer> Customers { get; set; }
         public IDbSet<Shipper> Shippers { get; set; }
         public IDbSet<Order> Orders { get; set; }
+        public IDbSet<OrderDetail> OrderDetails { get; set; }
 
         public TestSolutionsService() : base("TestSolutions")
         {
