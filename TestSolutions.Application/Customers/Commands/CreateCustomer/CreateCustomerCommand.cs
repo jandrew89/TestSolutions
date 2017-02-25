@@ -20,7 +20,12 @@ namespace TestSolutions.Application.Customers.Commands.CreateCustomer
             this._factory = factory;
         }
 
-        public void CreateCustomer(CustomerModel model)
+        public async Task ExecuteAsync(CustomerModel model)
+        {
+            await Task.Run(() => CreateCustomer(model));
+        }
+
+        private void CreateCustomer(CustomerModel model)
         {
             Customer customer = _factory.Create(model);
 
@@ -28,5 +33,7 @@ namespace TestSolutions.Application.Customers.Commands.CreateCustomer
 
             _context.Save();
         }
+
+        
     }
 }

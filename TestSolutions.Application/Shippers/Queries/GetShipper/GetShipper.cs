@@ -16,7 +16,17 @@ namespace TestSolutions.Application.Shippers.Queries.GetShipper
             _context = context;
         }
 
-        public List<ShipperModel> GetShipperList()
+        public async Task<List<ShipperModel>> GetShippersListAsync()
+        {
+            return await Task<List<ShipperModel>>.Run(() => GetShipperList());
+        }
+
+        public async Task<ShipperModel> GetShipperDetailAsync(int shipperId)
+        {
+            return await Task<ShipperModel>.Run(() => GetShipperDetail(shipperId));
+        }
+
+        private List<ShipperModel> GetShipperList()
         {
 
             var shippers = _context.Shippers.Select(s => new ShipperModel
@@ -29,7 +39,7 @@ namespace TestSolutions.Application.Shippers.Queries.GetShipper
             return shippers.ToList();
         }
 
-        public ShipperModel GetShipperDetail(int shipperId)
+        private ShipperModel GetShipperDetail(int shipperId)
         {
             var shipper = _context.Shippers
                 .Where(s => s.ShipperId == shipperId)
@@ -43,5 +53,7 @@ namespace TestSolutions.Application.Shippers.Queries.GetShipper
                 
             return shipper;
         }
+
+        
     }
 }

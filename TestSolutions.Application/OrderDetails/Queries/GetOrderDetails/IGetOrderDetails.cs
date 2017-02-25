@@ -8,6 +8,6 @@ namespace TestSolutions.Application.OrderDetails.Queries.GetOrderDetails
 {
     public interface IGetOrderDetails
     {
-        OrderDetailsModel Execute(int orderId);
+        Task<OrderDetailsModel> ExecuteAsync(int orderId);
     }
 }

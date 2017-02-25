@@ -16,7 +16,12 @@ namespace TestSolutions.Application.OrderDetails.Queries.GetOrderDetails
             this._context = context;
         }
 
-        public OrderDetailsModel Execute(int orderId)
+        public async Task<OrderDetailsModel> ExecuteAsync(int orderId)
+        {
+            return await Task<OrderDetailsModel>.Run(() => Execute(orderId));
+        }
+
+        private OrderDetailsModel Execute(int orderId)
         {
             var order = _context.OrderDetails.Where(o => o.Order.OrderId == orderId).Select(od => new OrderDetailsModel
             {
@@ -29,5 +34,7 @@ namespace TestSolutions.Application.OrderDetails.Queries.GetOrderDetails
 
             return order;
         }
+
+        
     }
 }

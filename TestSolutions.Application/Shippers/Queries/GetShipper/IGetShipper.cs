@@ -8,7 +8,7 @@ namespace TestSolutions.Application.Shippers.Queries.GetShipper
 {
     public interface IGetShipper
     {
-        List<ShipperModel> GetShipperList();
-        ShipperModel GetShipperDetail(int shipperId);
+        Task<List<ShipperModel>> GetShippersListAsync();
+        Task<ShipperModel> GetShipperDetailAsync(int shipperId);
     }
 }

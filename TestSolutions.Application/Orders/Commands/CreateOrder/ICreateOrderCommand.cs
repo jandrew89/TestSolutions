@@ -8,6 +8,6 @@ namespace TestSolutions.Application.Orders.Commands.CreateOrder
 {
     public interface ICreateOrderCommand
     {
-        void Execute(OrderModel model);
+        Task ExecuteAsync(OrderModel model);
     }
 }

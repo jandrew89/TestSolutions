@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using TestSolutions.Application.Customers;
@@ -24,15 +25,15 @@ namespace TestSolutions.Service.Customers
         }
 
         
-        public IEnumerable<CustomerModel> Get()
+        public async Task<IEnumerable<CustomerModel>> Get()
         {
-            return _query.GetCustomersList();
+            return await _query.ExecuteAsync();
         }
 
         [HttpPost]
-        public HttpResponseMessage Create(CustomerModel model)
+        public async Task<HttpResponseMessage> Create(CustomerModel model)
         {
-            _command.CreateCustomer(model);
+            await _command.ExecuteAsync(model);
 
             return new HttpResponseMessage(HttpStatusCode.Created);
         }

@@ -8,6 +8,6 @@ namespace TestSolutions.Application.Customers.Queries.Abstractions
 {
     public interface IGetCustomersQuery
     {
-        List<CustomerModel> GetCustomersList();
+        Task<List<CustomerModel>> ExecuteAsync();
     }
 }

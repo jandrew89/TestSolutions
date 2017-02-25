@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
 using TestSolutions.Application.Interfaces;
 using TestSolutions.Application.Orders.Commands.Factory;
 using TestSolutions.Common.Dates;
@@ -18,7 +20,12 @@ namespace TestSolutions.Application.Orders.Commands.CreateOrder
             this._factory = factory;
         }
 
-        public void Execute(OrderModel model)
+        public async Task ExecuteAsync(OrderModel model)
+        {
+            await Task.Run(() => Execute(model));
+        }
+
+        private void Execute(OrderModel model)
         {
             var date = _dateService.GetDate();
 
@@ -32,5 +39,7 @@ namespace TestSolutions.Application.Orders.Commands.CreateOrder
             _context.Save();
 
         }
+
+        
     }
 }

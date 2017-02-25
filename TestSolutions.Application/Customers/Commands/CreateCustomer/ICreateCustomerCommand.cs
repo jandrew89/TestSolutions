@@ -8,6 +8,6 @@ namespace TestSolutions.Application.Customers.Commands.CreateCustomer
 {
     public interface ICreateCustomerCommand
     {
-        void CreateCustomer(CustomerModel model);
+        Task ExecuteAsync(CustomerModel model);
     }
 }

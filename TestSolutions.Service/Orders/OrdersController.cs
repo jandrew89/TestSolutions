@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using TestSolutions.Application.Orders;
@@ -23,25 +24,25 @@ namespace TestSolutions.Service.Orders
         }
 
         [HttpPost]
-        public HttpResponseMessage Create(OrderModel model)
+        public async Task<HttpResponseMessage> Create(OrderModel model)
         {
-            _createCommand.Execute(model);
+            await _createCommand.ExecuteAsync(model);
 
             return new HttpResponseMessage(HttpStatusCode.Created);
         }
 
         [HttpGet]
-        public OrderModel Get(int id)
+        public async Task<OrderModel> Get(int id)
         {
-            OrderModel model = _query.GetOrderDetail(id);
+            OrderModel model = await _query.GetOrderDetailAsync(id);
 
             return model;
         } 
 
         [HttpGet]
-        public IEnumerable<OrderModel> Get()
+        public async Task<IEnumerable<OrderModel>> Get()
         {
-            var models = _query.GetOrdersList();
+            var models = await _query.GetOrderListAsync();
             return models;
         }
     }

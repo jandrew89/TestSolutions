@@ -17,7 +17,12 @@ namespace TestSolutions.Application.Customers.Queries.Implementations
             this._database = database;
         }
 
-        public List<CustomerModel> GetCustomersList()
+        public async Task<List<CustomerModel>> ExecuteAsync()
+        {
+            return await Task<List<CustomerModel>>.Run(() => GetCustomersList());
+        }
+
+        private List<CustomerModel> GetCustomersList()
         {
             var customers = _database.Customers.Select(p => new CustomerModel()
             {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using TestSolutions.Application.Shippers;
@@ -17,14 +18,14 @@ namespace TestSolutions.Service.Shippers
             _query = query;
         }
 
-        public IEnumerable<ShipperModel> Get()
+        public async Task<IEnumerable<ShipperModel>> Get()
         {
-            return _query.GetShipperList();
+            return await _query.GetShippersListAsync();
         }
 
-        public ShipperModel Get(int id)
+        public async Task<ShipperModel> Get(int id)
         {
-            return _query.GetShipperDetail(id);
+            return await _query.GetShipperDetailAsync(id);
         }
     }
 }

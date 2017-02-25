@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using TestSolutions.Application.OrderDetails;
@@ -17,9 +18,9 @@ namespace TestSolutions.Service.OrderDetails
             this._query = query;
         }
 
-        public OrderDetailsModel Get(int id)
+        public async Task<OrderDetailsModel> Get(int id)
         {
-            var model = _query.Execute(id);
+            var model = await _query.ExecuteAsync(id);
 
             return model;
         }
