@@ -26,7 +26,7 @@ namespace TestSolutions.Service.Tests.Customers
             var query = new Mock<IGetCustomersQuery>();
             var command = new Mock<ICreateCustomerCommand>();
 
-            query.SetupGet(q => q.ExecuteAsync()).Returns(new List<CustomerModel>());
+            //query.SetupGet(q => q.ExecuteAsync()).Returns(new List<CustomerModel>());
 
             _controller = new CustomersController(query.Object, command.Object);
         }
