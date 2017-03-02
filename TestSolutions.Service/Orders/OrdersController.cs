@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Http;
+using TestSolutions.Application.Messaging;
 using TestSolutions.Application.Orders;
 using TestSolutions.Application.Orders.Commands.CreateOrder;
 using TestSolutions.Application.Orders.Queries.GetOrders;
+using TestSolutions.Common.ApplicationSettings;
 
 namespace TestSolutions.Service.Orders
 {
@@ -16,11 +15,13 @@ namespace TestSolutions.Service.Orders
     {
         private readonly ICreateOrderCommand _createCommand;
         private readonly IGetOrders _query;
+        private readonly IConfigurationRepository _configuration;
 
-        public OrdersController(ICreateOrderCommand createCommand, IGetOrders query)
+        public OrdersController(ICreateOrderCommand createCommand, IGetOrders query, IConfigurationRepository configuration)
         {
             this._createCommand = createCommand;
             this._query = query;
+            this._configuration = configuration;
         }
 
         [HttpPost]
@@ -35,6 +36,11 @@ namespace TestSolutions.Service.Orders
         public async Task<OrderModel> Get(int id)
         {
             OrderModel model = await _query.GetOrderDetailAsync(id);
+
+            CreateOrderMessagingClient client = new CreateOrderMessagingClient(_configuration);
+            client.CreateConnection();
+            client.AddOrderToQueue(model);
+            client.Close();
 
             return model;
         } 
