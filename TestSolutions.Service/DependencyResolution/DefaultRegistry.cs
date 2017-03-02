@@ -22,6 +22,7 @@ namespace TestSolutions.Service.DependencyResolution {
     using Application.OrderDetails.Queries.GetOrderDetails;
     using Application.Orders.Commands.CreateOrder;
     using Application.Shippers.Queries.GetShipper;
+    using Common.ApplicationSettings;
     using Common.Dates;
     using Repository.EF;
     using StructureMap.Configuration.DSL;
@@ -45,6 +46,7 @@ namespace TestSolutions.Service.DependencyResolution {
                     
                 });
             For<IDatabaseService>().Use<TestSolutionsService>();
+            For<IConfigurationRepository>().Use<ConfigFileConfigurationRepository>();
         }
 
         #endregion
