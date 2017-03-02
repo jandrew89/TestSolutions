@@ -55,7 +55,7 @@ namespace TestSolutions.Application.Tests
             var customerCommand = new CreateCustomerCommand(mockDatabase.Object, mockFactory.Object);
 
             //ACT
-            customerCommand.CreateCustomer(new CustomerModel());
+            customerCommand.ExecuteAsync(new CustomerModel());
             //ASSERT
             mockFactory.VerifyAll();
         }
