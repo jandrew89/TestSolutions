@@ -9,7 +9,7 @@ namespace TestSolutions.Application.Orders.Queries.GetOrders
 {
     public interface IGetOrders
     {
-        Task<OrderModel> GetOrderDetailAsync(int orderId);
+        Task<OrderModel> GetOrderAsync(int orderId);
         Task<List<OrderModel>> GetOrderListAsync();
     }
 }

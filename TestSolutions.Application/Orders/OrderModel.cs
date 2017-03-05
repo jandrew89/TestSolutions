@@ -10,7 +10,7 @@ namespace TestSolutions.Application.Orders
     {
         public int ShipperId { get; set; }
         public int CustomerId { get; set; }
-
+        public int EmployeeId { get; set; }
         public int OrderId { get; set; }
         public decimal Total { get; set; }
         public string Comments { get; set; }

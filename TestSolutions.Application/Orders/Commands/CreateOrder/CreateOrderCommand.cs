@@ -33,7 +33,9 @@ namespace TestSolutions.Application.Orders.Commands.CreateOrder
 
             var shipper = _context.Shippers.Single(s => s.ShipperId == model.ShipperId);
 
-            var order = _factory.Create(date, customer, shipper, model.Total, model.Comments);
+            var employee = _context.Employees.Single(e => e.EmployeeId == model.EmployeeId);
+
+            var order = _factory.Create(date, employee, customer, shipper, model.Total, model.Comments);
 
             _context.Orders.Add(order);
             _context.Save();
