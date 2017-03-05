@@ -43,8 +43,12 @@
     <Compile Include="Common\IEntity.cs" />
     <Compile Include="Customers\Customer.cs" />
     <Compile Include="DomainEvents\CustomerEventArgs.cs" />
+    <Compile Include="Employees\Employee.cs" />
     <Compile Include="OrderDetails\OrderDetail.cs" />
     <Compile Include="Orders\Order.cs" />
+    <Compile Include="ProductCategories\ProductCategory.cs" />
+    <Compile Include="ProductInventories\ProductInventory.cs" />
+    <Compile Include="Products\Product.cs" />
     <Compile Include="Shippers\Shipper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
