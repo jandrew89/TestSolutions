@@ -35,7 +35,7 @@ namespace TestSolutions.Service.Orders
         [HttpGet]
         public async Task<OrderModel> Get(int id)
         {
-            OrderModel model = await _query.GetOrderDetailAsync(id);
+            OrderModel model = await _query.GetOrderAsync(id);
 
             CreateOrderMessagingClient client = new CreateOrderMessagingClient(_configuration);
             client.CreateConnection();

@@ -13,10 +13,13 @@ namespace TestSolutions.Repository.EF.OrderDetails
     {
         public OrderDetailsConfiguration()
         {
-            this.HasKey(t => t.OrderId);
+            this.HasKey(t => new { t.OrderId, t.ProductId});
 
             this.Property(t => t.OrderId)
               .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+
+            this.Property(t => t.ProductId)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
             this.ToTable("OrderDetail", "Sales");
 
@@ -27,7 +30,12 @@ namespace TestSolutions.Repository.EF.OrderDetails
             this.Property(t => t.OrderId).HasColumnName("OrderId");
             this.Property(t => t.ProductName).HasColumnName("ProductName");
 
-            this.HasRequired(t => t.Order);
+            this.HasRequired(t => t.Product)
+                 .WithMany(t => t.OrderDetails)
+                 .HasForeignKey(d => d.ProductId);
+            this.HasRequired(t => t.Order)
+                .WithMany(t => t.OrderDetails)
+                .HasForeignKey(d => d.OrderId);
         }
     }
 }

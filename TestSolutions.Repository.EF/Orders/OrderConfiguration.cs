@@ -21,15 +21,24 @@ namespace TestSolutions.Repository.EF.Orders
 
             // Table & Column Mappings
             this.ToTable("Order", "Sales");
-            this.Property(t => t.OrderId).HasColumnName("OrderID");
+            this.Property(t => t.OrderId).HasColumnName("OrderId");
             this.Property(t => t.Total).HasColumnName("Total");
             this.Property(t => t.Comments).HasColumnName("Comments");
             this.Property(t => t.CreationDateTime).HasColumnName("CreationDateTime");
 
             // Relationships
             
-            this.HasRequired(t => t.Shipper);
-            this.HasRequired(t => t.Customer);
+            this.HasRequired(t => t.Employee)
+              .WithMany(t => t.Orders)
+              .HasForeignKey(d => d.EmployeeId);
+
+            this.HasRequired(t => t.Shipper)
+               .WithMany(t => t.Orders)
+               .HasForeignKey(d => d.ShipperId);
+
+            this.HasRequired(t => t.Customer)
+                .WithMany(t => t.Orders)
+                .HasForeignKey(d => d.CustomerId);
 
         }
     }
