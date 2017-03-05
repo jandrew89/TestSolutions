@@ -18,7 +18,7 @@ namespace TestSolutions.Application.Messaging
         private readonly string _password;
         private readonly string _virtualHost;
 
-        private readonly string _routingKey = "CustomerCreation";
+        private readonly string _routingKey = "OrderCreation";
 
         public CreateOrderMessagingClient(IConfigurationRepository configurationRepository)
         {
